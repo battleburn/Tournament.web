@@ -1,0 +1,310 @@
+a<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Battle Burn FF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'rubik', sans-serif;
+      background: #0d0d0d;
+      color: #f0f0f0;
+      min-height: 100vh;
+    }
+    .navbar {
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      color: #ff6f00;
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 0.8rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: #00bcd4;
+      background: rgba(0, 188, 212, 0.15);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      width: 25px;
+      height: 22px;
+    }
+    .hamburger span {
+      background: #ff6f00;
+      height: 3px;
+      border-radius: 2px;
+    }
+    .section {
+      display: none;
+      padding: 2rem 1.5rem;
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #111111;
+      border-radius: 10px;
+    }
+    .section.active {
+      display: block;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: linear-gradient(to bottom, #000000ee, #000000dd),
+        url('https://images.unsplash.com/photo-1568051243854-0c45082c8c54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: #ff6f00;
+      border-radius: 10px;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      background: linear-gradient(45deg, #ff6f00, #ff8c00);
+      padding: 0.85rem 2rem;
+      color: black;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: linear-gradient(45deg, #ffa733, #ffc04d);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #333;
+      text-align: left;
+      background: #1e1e1e;
+      color: #fff;
+    }
+    th {
+      background: #ff6f00;
+      color: #111;
+      position: sticky;
+      top: 0;
+    }
+    tr:hover td {
+      background: #ff8c00aa;
+      color: #111;
+      cursor: default;
+    }
+    ul {
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+    li {
+      margin-bottom: 0.7rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      background: #1a1a1a;
+      color: #999;
+      margin-top: 2rem;
+    }
+    .socials {
+      margin-top: 1rem;
+    }
+    .socials a {
+      display: inline-block;
+      margin: 0 10px;
+      background: #ff6f00;
+      color: black;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .socials a:hover {
+      background: #ffa733;
+    }
+    @media (max-width: 600px) {
+      .hamburger {
+        display: flex;
+      }
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        height: calc(100vh - 60px);
+        width: 220px;
+        background: #1a1a1a;
+        flex-direction: column;
+        gap: 0;
+        padding-top: 1rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .nav-links li {
+        width: 100%;
+      }
+      .nav-links a {
+        display: block;
+        padding: 1rem 1.5rem;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #333;
+        text-align: center;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Battle Burn FF</div>
+    <ul class="nav-links">
+      <li><a class="active" onclick="showSection('home')">Home</a></li>
+      <li><a onclick="showSection('register')">Register</a></li>
+      <li><a onclick="showSection('schedule')">Schedule</a></li>
+      <li><a onclick="showSection('rules')">Rules</a></li>
+    </ul>
+    <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <section id="home" class="section active">
+    <div class="hero">
+      <h2>Welcome to the Ultimate Free Fire Tournament</h2>
+      <p>Entry Fee: PKR 20 | PKR 5 per kill | Booyah = Get PKR 20 back!</p>
+      <a class="btn" onclick="showSection('register')">Register Now</a>
+    </div>
+  </section>
+
+  <section id="register" class="section">
+    <h2>Register</h2>
+    <p style="margin-bottom: 1rem;">Click below to register via google forms:</p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+      <div class="socials"><a href=https://docs.google.com/forms/d/e/1FAIpQLScYhOUWyjMa_7TlMLlk7jXVZG-JGqRem1GWySp414_CJ55M2A/viewform?usp=header>Click here to Register</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="section">
+    <h2>Tournament Schedule</h2>
+    <ul>
+      <li>Daily 3 pm to 5 pm</li>
+    </ul>
+  </section>
+
+  
+  <section id="rules" class="section">
+    <h2>Tournament Rules</h2>
+    <ul>
+      <li>No cheating or hacks</li>
+      <li>Use correct UID and name</li>
+      <li>Be on time</li>
+      <li>Respect all players</li>
+      <li>Organizers can change rules anytime</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Battle Burn FF. All Rights Reserved.</p>
+    <div class="socials">
+      <a href="https://www.instagram.com/battlerun077" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@battlerun077" target="_blank">TikTok</a>
+    </div>
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('onclick') === `showSection('${id}')`);
+      });
+      if (window.innerWidth <= 600) toggleMenu(false);
+    }
+
+    function sortTable() {
+      const rows = Array.from(document.querySelectorAll('#leaderboardTable tbody tr'));
+      rows.sort((a, b) => parseInt(b.children[4].textContent) - parseInt(a.children[4].textContent));
+      const tbody = document.querySelector('#leaderboardTable tbody');
+      rows.forEach(row => tbody.appendChild(row));
+    }
+
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    function toggleMenu(forceState) {
+      const isActive = typeof forceState === 'boolean' ? forceState : navLinks.classList.contains('active');
+      if (isActive) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+      } else {
+        navLinks.classList.add('active');
+        hamburger.classList.add('active');
+      }
+    }
+    hamburger.addEventListener('click', () => toggleMenu());
+    hamburger.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('home');
+    });
+  </script>
+</body>
+</html>
